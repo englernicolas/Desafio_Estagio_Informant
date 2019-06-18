@@ -4,18 +4,16 @@ public class Desafio {
     public static void main(String[] args) {
         while (true) {
             String msg = JOptionPane.showInputDialog(null, "Digite uma palavra ou uma frase: ", "Verificador de palíndromos", JOptionPane.QUESTION_MESSAGE);
-            String msgSemEspacos = "";
-            String msgSemAcentosEspacos = "";
 
-            msgSemEspacos = tirarEspacos(msg);
-            msgSemEspacos = msgSemEspacos.toLowerCase();
+            String msgFinal = tirarEspacos(msg);
+            msgFinal = msgFinal.toLowerCase();
 
-            msgSemAcentosEspacos = tirarAcentos(msgSemEspacos);
+            msgFinal = tirarAcentos(msgFinal);
 
-            StringBuffer msgInvertida = InverterMsgFinal(msgSemAcentosEspacos);
-            String msgFinal = msgInvertida.toString();
+            StringBuffer msgInvertida = InverterMsgFinal(msgFinal);
+            String msgFinalInvertida = msgInvertida.toString();
 
-            verificadorPalindromo(msg, msgSemAcentosEspacos, msgFinal);
+            verificadorPalindromo(msg, msgFinal, msgFinalInvertida);
 
             int continuar = JOptionPane.showConfirmDialog(null, "Deseja verificar outra palavra?", "Verificador de palíndromos", JOptionPane.YES_NO_OPTION);
             if (continuar != JOptionPane.YES_OPTION) {
@@ -51,6 +49,7 @@ public class Desafio {
                     c = 'e';
                     break;
                 case 'í':
+                case 'ì':
                     c = 'i';
                     break;
                 case 'ó':
@@ -78,8 +77,8 @@ public class Desafio {
     }
 
     // método para verificar se a String final é ou não um palíndromo
-    private static void verificadorPalindromo(String msg, String msgSemAcentosEspacos, String msgFinal) {
-        if (msgSemAcentosEspacos.equals(msgFinal)) {
+    private static void verificadorPalindromo(String msg, String msgSemAcentosEspacos, String msgFinalInvertida) {
+        if (msgSemAcentosEspacos.equals(msgFinalInvertida)) {
             JOptionPane.showMessageDialog(null, "'" + msg + "' é palíndromo!", "Verificador de palíndromos", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "'" + msg + "' não é palíndromo!", "Verificador de palíndromos", JOptionPane.INFORMATION_MESSAGE);
